@@ -1,0 +1,47 @@
+# rent_ride_problem1
+
+Driver.java
+
+package rent;
+public class Driver {
+	String[] driverNames = {"A", "B", "C", "D", "E"};
+    String[] carModels = {"Sedan", "HatchBack", "5 Seater", "Sedan", "HatchBack"};
+    double[] ratings = {4.0, 4.3, 4.8, 4.1, 4.7};
+    int[] distancesFromCustomer= {5000, 1000, 200, 700, 430};
+    public void print() {
+    for(int i=0;i<driverNames.length;i++) {
+    	System.out.println(driverNames[i]+" "+carModels[i]+" "+ratings[i]+" "+distancesFromCustomer[i]);
+    }
+    }
+}
+
+
+Main.java
+
+
+package rent;
+import java.util.*;
+public class Main extends Driver {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the ride distance (in km): ");
+		double rideDistance = sc.nextDouble();
+		sc.nextLine();// Consume newline
+		System.out.print("Enter the requested car model: ");
+		String requestedCarModel = sc.nextLine();
+		System.out.println("List of Drivers with Details:");
+		Driver d=new Driver();
+		d.print();
+	    String selectedDriver=null;
+	    double minDistance=9999;
+	    for(int i=0;i<5;i++) {
+	    	if(d.carModels[i].equals(requestedCarModel)&&d.ratings[i]>=4.0&&d.distancesFromCustomer[i]<minDistance) {
+	    		selectedDriver=d.driverNames[i];
+	        	minDistance=d.distancesFromCustomer[i];
+	        }
+	    }
+	        System.out.println("Driver " + selectedDriver+ " will get you to the destination.");
+	        int totalCharge =(int)rideDistance * 8;
+	        System.out.println("Your charge will be Rs " + totalCharge)
+		}
+}
